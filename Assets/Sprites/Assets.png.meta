@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -7273,14 +7273,14 @@ TextureImporter:
       Assets_164: -1026650768
       Assets_235: -1463875978
       Assets_28: -1999911378
-      Assets_94: -1013166472
       Assets_290: -2005752623
       Assets_205: -568665125
       Assets_77: -976883945
       Assets_95: -473168428
       Assets_109: -2057614812
-      Assets_124: 1221451753
+      Assets_94: -1013166472
       Assets_146: -1531653648
+      Assets_124: 1221451753
       Assets_301: -654571004
       Assets_57: -1235087995
       Assets_133: -1080177984
