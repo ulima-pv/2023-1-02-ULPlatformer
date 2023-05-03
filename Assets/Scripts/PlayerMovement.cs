@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,13 @@ public class PlayerMovement : MonoBehaviour
         mRb = GetComponent<Rigidbody2D>();
         mAnimator = GetComponent<Animator>();
         mCollider = GetComponent<CapsuleCollider2D>();
+
+        GameManager.Instance.OnPlayerDamage += OnPlayerDamageDelegate;
+    }
+
+    private void OnPlayerDamageDelegate(object sender, EventArgs e)
+    {
+        // Configurar varias cosas del personaje
     }
 
     private void Update()
