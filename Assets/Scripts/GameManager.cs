@@ -20,8 +20,10 @@ public class GameManager : MonoBehaviour
         PlayerHealth -= 1;
         OnPlayerDamage?.Invoke(this, EventArgs.Empty);
 
+        Debug.Log($"Health:{ PlayerHealth }");
         if (PlayerHealth <= 0f)
         {
+            Debug.Log("MUERTE");
             OnPlayerDied?.Invoke(this, EventArgs.Empty);
         }
     }

@@ -10,25 +10,38 @@ public class PlayerMovement : MonoBehaviour
     private float runSpeed = 4f;
     [SerializeField]
     private float jumpSpeed = 10f;
+    [SerializeField]
+    private List<AudioClip> audioList;
 
     private Vector2 mMoveInput;
     private Rigidbody2D mRb;
     private Animator mAnimator;
     private CapsuleCollider2D mCollider;
-    private bool IsJumping = false;
+    private AudioSource mAudioSource;
 
     private void Start()
     {
         mRb = GetComponent<Rigidbody2D>();
         mAnimator = GetComponent<Animator>();
         mCollider = GetComponent<CapsuleCollider2D>();
+        mAudioSource = GetComponent<AudioSource>();
 
         GameManager.Instance.OnPlayerDamage += OnPlayerDamageDelegate;
+        GameManager.Instance.OnPlayerDied += OnPlayerDiedDelegate;
+    }
+
+    private void OnPlayerDiedDelegate(object sender, EventArgs e)
+    {
+        // Configurar cuando muera el personaje
+        Debug.Log("OnPlayerDiedDelegate");
+        mAudioSource.PlayOneShot(audioList[2]);
+        Destroy(gameObject, 1.5f);
     }
 
     private void OnPlayerDamageDelegate(object sender, EventArgs e)
     {
         // Configurar varias cosas del personaje
+        mAudioSource.PlayOneShot(audioList[1]);
     }
 
     private void Update()
@@ -78,13 +91,20 @@ public class PlayerMovement : MonoBehaviour
         {
             if (value.isPressed)
             {
-                // Saltar
-                mRb.velocity = new Vector2(
-                    mRb.velocity.x,
-                    jumpSpeed
-                );
-                mAnimator.SetBool("IsJumping", true);
+                Jump();
             }
         }
     }
+
+    private void Jump()
+    {
+        // Saltar
+        mAudioSource.PlayOneShot(audioList[0]);
+        mRb.velocity = new Vector2(
+            mRb.velocity.x,
+            jumpSpeed
+        );
+        mAnimator.SetBool("IsJumping", true);
+    }
+
 }
